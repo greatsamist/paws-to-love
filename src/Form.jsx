@@ -1,29 +1,26 @@
 import React from "react";
 
-const Form = ({
-  requestPets,
-  location,
-  setLocation,
-  animal,
-  setAnimal,
-  breed,
-  setBreed,
-  ANIMALS,
-  breeds,
-}) => {
+const Form = ({ animal, setAnimal, ANIMALS, breeds, setRequestParams }) => {
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        requestPets();
+
+        const formData = new FormData(e.target);
+        const obj = {
+          animal: formData.get("animal") ?? "",
+          breed: formData.get("breed") ?? "",
+          location: formData.get("location") ?? "",
+        };
+        setRequestParams(obj);
       }}
     >
       <label htmlFor="location">
         Location
         <input
-          onChange={(e) => setLocation(e.target.value)}
           id="location"
-          value={location}
+          name="location"
+          //   value={location}
           placeholder="Location"
         />
       </label>
@@ -34,7 +31,6 @@ const Form = ({
           value={animal}
           onChange={(e) => {
             setAnimal(e.target.value);
-            setBreed("");
           }}
         >
           <option />
@@ -46,12 +42,7 @@ const Form = ({
 
       <label htmlFor="breed">
         Breed
-        <select
-          id="breed"
-          disabled={breeds.length === 0}
-          value={breed}
-          onChange={(e) => setBreed(e.target.value)}
-        >
+        <select id="breed" name="breed" disabled={breeds.length === 0}>
           <option />
           {breeds.map((breed) => (
             <option key={breed.id}>{breed}</option>
