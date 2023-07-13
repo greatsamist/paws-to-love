@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useBreedList from "./useBreedList";
-import Results from "./Results";
-import Form from "./Form";
+import Results from "./components/Results";
+import Form from "./components/Form";
 import fetchSearch from "./components/queries/fetchSearch";
 import { useQuery } from "@tanstack/react-query";
 
@@ -13,7 +13,7 @@ const SearchParams = () => {
     animal: "",
     breed: "",
   });
-  const [location, setLocation] = useState("");
+
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
 
@@ -26,7 +26,6 @@ const SearchParams = () => {
     <div className="search-params">
       <Form
         location={location}
-        setLocation={setLocation}
         animal={animal}
         setAnimal={setAnimal}
         breed={breed}
