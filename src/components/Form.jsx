@@ -1,6 +1,13 @@
 import React from "react";
 
-const Form = ({ animal, setAnimal, ANIMALS, breeds, setRequestParams }) => {
+const Form = ({
+  adoptedPet,
+  animal,
+  setAnimal,
+  ANIMALS,
+  breeds,
+  setRequestParams,
+}) => {
   return (
     <form
       onSubmit={(e) => {
@@ -15,14 +22,14 @@ const Form = ({ animal, setAnimal, ANIMALS, breeds, setRequestParams }) => {
         setRequestParams(obj);
       }}
     >
+      {adoptedPet ? (
+        <div className="pet image-container">
+          <img src={adoptedPet.images[0]} alt={adoptedPet.name} />
+        </div>
+      ) : null}
       <label htmlFor="location">
         Location
-        <input
-          id="location"
-          name="location"
-          //   value={location}
-          placeholder="Location"
-        />
+        <input id="location" name="location" placeholder="Location" />
       </label>
       <label htmlFor="animal">
         Animal
