@@ -10,6 +10,7 @@ const Form = ({
 }) => {
   return (
     <form
+      className="mb-10 flex flex-col items-center justify-center rounded-lg bg-gray-200 p-10 shadow-lg"
       onSubmit={(e) => {
         e.preventDefault();
 
@@ -29,11 +30,18 @@ const Form = ({
       ) : null}
       <label htmlFor="location">
         Location
-        <input id="location" name="location" placeholder="Location" />
+        <input
+          className="search-input"
+          type="text"
+          id="location"
+          name="location"
+          placeholder="Location"
+        />
       </label>
       <label htmlFor="animal">
         Animal
         <select
+          className="search-input grayed-out-disabled"
           id="animal"
           value={animal}
           onChange={(e) => {
@@ -49,14 +57,21 @@ const Form = ({
 
       <label htmlFor="breed">
         Breed
-        <select id="breed" name="breed" disabled={breeds.length === 0}>
+        <select
+          className="search-input disabled:opacity-50"
+          id="breed"
+          name="breed"
+          disabled={breeds.length === 0}
+        >
           <option />
           {breeds.map((breed) => (
             <option key={breed.id}>{breed}</option>
           ))}
         </select>
       </label>
-      <button>Submit</button>
+      <button className="rounded border-none bg-orange-500 px-6 py-2 text-white hover:opacity-50">
+        Submit
+      </button>
     </form>
   );
 };
